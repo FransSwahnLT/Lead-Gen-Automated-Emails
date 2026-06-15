@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roomvo Lead Emails</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+<style>
+
+/* ═══════════════════════════════════════════════════════════════
+   ROCKET 3.0 DESIGN TOKENS
+   Source: Figma pafe2Ef03rlBZDgJT1A49G · Primitives + Semantic
+═══════════════════════════════════════════════════════════════ */
+:root {
+  /* Primitives — Color */
+  --p-neutral-0:    #222222;
+  --p-neutral-50:   #373C40;
+  --p-neutral-100:  #2F3337;
+  --p-neutral-200:  #2C3034;
+  --p-neutral-300:  #232729;
+  --p-neutral-800:  #F5F5F5;
+  --p-neutral-900:  #F2F2F2;
+  --p-neutral-1000: #FFFFFF;
+  --p-teal-600:     #055B61;
+  --p-teal-400:     #20BCC7;
+  --p-blue-600:     #2971D1;
+  --p-blue-400:     #6CA8F9;
+  --p-green-600:    #497F37;
+  --p-green-400:    #76BA5F;
+  --p-orange-600:   #AD6507;
+  --p-orange-400:   #F69A22;
+  --p-red-600:      #CE3E37;
+  --p-red-400:      #FF817A;
+  --p-amber-500:    #FAAF00;
+  --p-roomvo:       #E85224;
+
+  /* Primitives — Space */
+  --space-0:  0px;  --space-1:  4px;  --space-2:  8px;
+  --space-3:  12px; --space-4:  16px; --space-5:  20px;
+  --space-6:  24px; --space-8:  32px; --space-10: 40px;
+  --space-12: 48px; --space-14: 56px; --space-16: 64px;
+
+  /* Primitives — Radius */
+  --radius-none: 0px;  --radius-sm: 4px;   --radius-md: 8px;
+  --radius-lg:   12px; --radius-xl: 16px;  --radius-full: 999px;
+
+  /* Primitives — Text size */
+  --text-xs: 10px; --text-sm: 12px; --text-md: 14px;
+  --text-lg: 16px; --text-xl: 18px; --text-2xl: 20px;
+
+  /* Primitives — Line height */
+  --leading-xs: 15px; --leading-sm: 18px; --leading-md: 21px;
+  --leading-lg: 22.4px; --leading-xl: 23.4px; --leading-2xl: 26px;
+
+  /* Semantic — Light mode */
+  --color-bg-default:        var(--p-neutral-1000);
+  --color-bg-surface:        var(--p-neutral-900);
+  --color-bg-surface-alt:    var(--p-neutral-800);
+  --color-text-primary:      var(--p-neutral-0);
+  --color-text-secondary:    rgba(47, 51, 55, 0.70);
+  --color-text-caption:      rgba(47, 51, 55, 0.50);
+  --color-text-disabled:     rgba(47, 51, 55, 0.38);
+  --color-text-inverse:      var(--p-neutral-1000);
+  --color-brand-primary:     var(--p-teal-600);  /* color/brand/primary → color/teal/600 */
+  --color-brand-on-primary:  var(--p-neutral-1000);
+  --color-border-default:    rgba(0, 0, 0, 0.09);
+  --color-border-strong:     rgba(0, 0, 0, 0.20);
+  --color-overlay-medium:    rgba(0, 0, 0, 0.10);
+  --color-special-roomvo:    var(--p-roomvo);      /* color/special/roomvo */
+  --color-status-info:       var(--p-blue-600);
+  --color-status-success:    var(--p-green-600);
+  --color-status-warning:    var(--p-orange-600);
+  --color-status-error:      var(--p-red-600);
+  --color-status-info-bg:    #EDF3FB;
+  --color-status-success-bg: #EEF4EC;
+  --color-status-warning-bg: #FAF4EA;
+  --color-status-error-bg:   #FCEDEC;
+
+  /* Email-specific */
+  --email-header-bg:       transparent;
+  --email-header-fg:       var(--p-neutral-0);
+  --email-card-bg:         var(--p-neutral-1000);
+  --email-cell-bg:         var(--p-neutral-900);
+  --email-activity-bg:     var(--color-status-warning-bg);
+  --email-activity-border: var(--color-overlay-medium);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESET + BASE
+═══════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  font-size: var(--text-md);
+  line-height: var(--leading-md);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   APP SHELL
+═══════════════════════════════════════════════════════════════ */
+.app-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   LEFT PANEL — EMAIL LIST
+═══════════════════════════════════════════════════════════════ */
+.panel-list {
+  width: 296px;
+  flex-shrink: 0;
+  border-right: 1px solid var(--color-border-default);
+  background: var(--color-bg-default);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.list-header {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-border-default);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.list-header-label {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--color-text-caption);
+}
+
+.list-header-count {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  background: var(--color-bg-surface);
+  padding: 1px var(--space-2);
+  border-radius: var(--radius-full);
+}
+
+.email-list {
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* ── Email list item ── */
+.email-item {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-border-default);
+  cursor: pointer;
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  position: relative;
+  transition: background 100ms ease-in-out;
+  user-select: none;
+}
+
+.email-item:hover { background: var(--color-bg-surface); }
+
+.email-item.selected {
+  background: var(--color-status-info-bg);
+}
+
+.email-item.selected::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: var(--color-status-info);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+/* Unread dot */
+.email-item.unread::after {
+  content: '';
+  position: absolute;
+  right: var(--space-4);
+  top: var(--space-4);
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--color-status-info);
+  flex-shrink: 0;
+}
+
+.item-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-full);
+  background: var(--avatar-bg, var(--color-bg-surface-alt));
+  color: var(--avatar-fg, var(--p-neutral-1000));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.item-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.item-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-bottom: 2px;
+}
+
+.item-sender {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.item-time {
+  font-size: var(--text-xs);
+  color: var(--color-text-caption);
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding-right: var(--space-3); /* room for unread dot */
+}
+
+.item-subject {
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: var(--leading-sm);
+  margin-bottom: var(--space-2);
+}
+
+.email-item.unread .item-subject { font-weight: 600; }
+
+
+/* ═══════════════════════════════════════════════════════════════
+   RIGHT PANEL — EMAIL DETAIL
+═══════════════════════════════════════════════════════════════ */
+.panel-detail {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-surface);
+}
+
+.detail-meta {
+  padding: var(--space-3) var(--space-6);
+  background: var(--color-bg-default);
+  border-bottom: 1px solid var(--color-border-default);
+  flex-shrink: 0;
+}
+
+.detail-meta-label {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--color-text-caption);
+  margin-bottom: var(--space-1);
+}
+
+.detail-meta-subject {
+  font-size: var(--text-lg);
+  font-weight: 500;
+  color: var(--color-text-primary);
+  line-height: var(--leading-xl);
+  letter-spacing: -0.1px;
+}
+
+.detail-canvas {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: var(--space-8) var(--space-6) var(--space-16);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   EMAIL TEMPLATE
+═══════════════════════════════════════════════════════════════ */
+.email {
+  background: var(--email-card-bg);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(0,0,0,0.07),
+    0 4px 16px rgba(0,0,0,0.08),
+    0 12px 40px rgba(0,0,0,0.06);
+  width: 100%;
+  max-width: 520px;
+}
+
+/* Header */
+.email-header {
+  background: var(--email-header-bg);
+  padding: var(--space-4) var(--space-5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.email-brand {
+  display: flex;
+  align-items: center;
+}
+
+.email-brand-logo {
+  height: 15px;
+  width: calc(15px * 68 / 11);
+  aspect-ratio: 68 / 11;
+  display: block;
+  object-fit: contain;
+}
+
+.badge {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.badge-muted       { color: var(--color-text-caption); }
+.badge-high-intent { background: var(--color-status-error-bg); color: var(--color-status-error); }
+
+/* Body */
+.email-body {
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Lead identity */
+.lead-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.lead-avatar {
+  width: 44px; height: 44px;
+  border-radius: var(--radius-full);
+  background: var(--color-bg-surface-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.5px;
+  flex-shrink: 0;
+}
+
+.lead-name {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: var(--leading-lg);
+  letter-spacing: -0.1px;
+}
+
+.lead-meta {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-sm);
+  margin-top: var(--space-1);
+}
+
+/* Info grid: 2-col, 3 rows */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-2);
+}
+
+.info-grid .cell-contact { grid-column: span 2; }
+
+.info-cell {
+  background: var(--email-cell-bg);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.cell-label {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--color-text-caption);
+  line-height: var(--leading-xs);
+}
+
+.cell-value {
+  font-size: var(--text-md);
+  font-weight: 500;
+  color: var(--color-text-primary);
+  line-height: var(--leading-md);
+}
+
+.cell-link {
+  font-size: var(--text-md);
+  font-weight: 500;
+  color: var(--color-status-info);
+  text-decoration: none;
+  line-height: var(--leading-md);
+}
+
+.cell-link:hover { text-decoration: underline; }
+
+.cell-lock-link {
+  font-size: var(--text-md);
+  font-weight: 500;
+  color: var(--color-status-info);
+  text-decoration: none;
+  line-height: var(--leading-md);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.cell-lock-link .lock-text {
+  text-decoration: underline;
+  text-underline-offset: var(--space-1);
+}
+
+.cell-lock-link:hover { opacity: 0.80; }
+
+/* Activity */
+.activity-section {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.activity-header {
+  background: var(--email-activity-bg);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--color-text-caption);
+}
+
+.activity-rows {
+  background: var(--email-activity-bg);
+  padding: var(--space-3) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.activity-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: var(--text-md);
+  color: var(--color-text-primary);
+  line-height: var(--leading-md);
+}
+
+.activity-icon {
+  font-size: var(--text-lg);
+  line-height: 1.2;
+  flex-shrink: 0;
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+}
+
+
+/* CTA */
+.cta-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-4);
+  background: var(--color-brand-primary);
+  color: var(--color-brand-on-primary);
+  text-decoration: none;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: var(--text-lg);
+  font-weight: 600;
+  border-radius: var(--radius-lg);
+  border: none;
+  cursor: pointer;
+  line-height: var(--leading-lg);
+  letter-spacing: -0.1px;
+  transition: opacity 150ms ease-in-out;
+}
+
+.cta-btn i { font-size: var(--text-xl); line-height: 1; }
+
+.cta-btn:hover { opacity: 0.88; }
+
+/* Urgency */
+.urgency {
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-sm);
+}
+
+/* Footer */
+.email-footer {
+  background: var(--color-overlay-medium);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.email-footer-legal {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  text-align: center;
+  line-height: 1.5;
+}
+
+.email-footer-legal a {
+  color: var(--color-status-info);
+  text-decoration: none;
+}
+
+.email-footer-logo {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  font-size: var(--text-sm);
+}
+
+.email-footer-powered-by {
+  color: var(--color-text-secondary);
+  font-weight: 400;
+}
+
+.email-footer-logo-img {
+  height: 11px;
+  width: calc(11px * 68 / 11);
+  aspect-ratio: 68 / 11;
+  display: block;
+  object-fit: contain;
+}
+
+.email-footer-address {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ── Claimed state ── */
+.claimed-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+}
+.claimed-banner-icon { font-size: var(--text-xl); color: var(--color-text-caption); line-height: 1.2; flex-shrink: 0; }
+.claimed-banner-text { font-size: var(--text-md); font-weight: 600; color: var(--color-text-primary); }
+.claimed-banner-sub { font-size: var(--text-sm); color: var(--color-text-secondary); margin-top: 2px; }
+.claimed-note { text-align: center; font-size: var(--text-sm); color: var(--color-text-caption); }
+
+/* ── Handover banner ── */
+.handover-banner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  background: var(--color-status-info-bg);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3) var(--space-4);
+}
+.handover-banner-icon { font-size: var(--text-xl); color: var(--color-status-info); flex-shrink: 0; line-height: 1; }
+.handover-banner-text { font-size: var(--text-md); font-weight: 600; color: var(--color-text-primary); }
+.handover-note {
+  background: var(--color-bg-surface);
+  border-left: 3px solid var(--color-border-strong);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: var(--space-3) var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  font-style: italic;
+  line-height: var(--leading-md);
+}
+.badge-assigned { background: var(--color-status-info-bg); color: var(--color-status-info); }
+
+/* ── Weekly Digest ── */
+.digest-header {
+  padding: var(--space-5);
+  border-bottom: 1px solid var(--color-border-default);
+}
+.digest-eyebrow {
+  font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
+  color: var(--color-text-caption); margin-bottom: var(--space-1);
+}
+.digest-title {
+  font-size: var(--text-xl); font-weight: 700; color: var(--color-text-primary);
+  letter-spacing: -0.3px; line-height: var(--leading-xl);
+}
+.digest-body { padding: var(--space-4) var(--space-5); display: flex; flex-direction: column; gap: var(--space-5); }
+.digest-section { display: flex; flex-direction: column; gap: var(--space-3); }
+.digest-section-hd {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.digest-section-title {
+  display: flex; align-items: center; gap: var(--space-2);
+  font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase;
+  color: var(--color-text-caption);
+}
+.digest-section-count {
+  font-size: var(--text-xs); font-weight: 600; color: var(--color-text-secondary);
+  background: var(--color-bg-surface); padding: 1px var(--space-2); border-radius: var(--radius-full);
+}
+.digest-table { border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden; }
+.digest-table-head {
+  display: grid; grid-template-columns: 1.2fr 1fr 90px 80px 32px 52px;
+  gap: var(--space-2); padding: var(--space-2) var(--space-3);
+  background: var(--color-bg-surface); border-bottom: 1px solid var(--color-border-default);
+  font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase;
+  color: var(--color-text-caption);
+}
+.digest-table-row {
+  display: grid; grid-template-columns: 1.2fr 1fr 90px 80px 32px 52px;
+  gap: var(--space-2); padding: var(--space-3);
+  border-bottom: 1px solid var(--color-border-default);
+  font-size: var(--text-sm); align-items: center;
+}
+.digest-table-row:last-child { border-bottom: none; }
+.dt-name { font-weight: 600; color: var(--color-text-primary); }
+.dt-brand { color: var(--color-text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dt-owner { color: var(--color-text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dt-days { color: var(--color-text-caption); }
+.dt-action { font-weight: 600; color: var(--color-status-info); text-decoration: none; white-space: nowrap; font-size: var(--text-xs); }
+.stage { font-size: var(--text-xs); font-weight: 600; padding: 2px var(--space-2); border-radius: var(--radius-full); white-space: nowrap; display: inline-block; }
+.s-new        { background: var(--color-status-info-bg); color: var(--color-status-info); }
+.s-contacted  { background: var(--color-status-warning-bg); color: var(--color-status-warning); }
+.s-quoted     { background: var(--color-status-success-bg); color: var(--color-status-success); }
+.s-lost       { background: var(--color-status-error-bg); color: var(--color-status-error); }
+
+.digest-unclaimed-list { background: var(--color-status-warning-bg); border-radius: var(--radius-md); overflow: hidden; }
+.digest-unclaimed-row {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-3);
+  padding: var(--space-3) var(--space-4); border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.digest-unclaimed-row:last-child { border-bottom: none; }
+.du-name { font-size: var(--text-sm); font-weight: 600; color: var(--color-text-primary); }
+.du-meta { font-size: var(--text-xs); color: var(--color-text-secondary); margin-top: 1px; }
+.du-cta { font-size: var(--text-sm); font-weight: 600; color: var(--color-status-info); text-decoration: none; white-space: nowrap; flex-shrink: 0; }
+
+.digest-lang-list { background: var(--color-bg-surface); border-radius: var(--radius-md); overflow: hidden; }
+.digest-lang-row {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-3);
+  padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--color-border-default);
+}
+.digest-lang-row:last-child { border-bottom: none; }
+.dl-name { font-size: var(--text-sm); font-weight: 600; color: var(--color-text-primary); }
+.dl-meta { font-size: var(--text-xs); color: var(--color-text-secondary); margin-top: 1px; }
+.dl-action { font-size: var(--text-sm); font-weight: 600; color: var(--color-text-secondary); text-decoration: none; white-space: nowrap; flex-shrink: 0; }
+
+.digest-lb { display: flex; flex-direction: column; gap: var(--space-2); }
+.digest-lb-row {
+  display: flex; align-items: center; gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-bg-surface); border-radius: var(--radius-md);
+}
+.lb-medal { font-size: var(--text-lg); flex-shrink: 0; width: 22px; text-align: center; line-height: 1; }
+.lb-name { font-size: var(--text-sm); font-weight: 600; color: var(--color-text-primary); flex: 1; }
+.lb-count { font-size: var(--text-xs); color: var(--color-text-secondary); font-weight: 500; }
+
+.item-avatar-icon {
+  background: var(--color-bg-surface-alt);
+  color: var(--color-text-secondary);
+  font-size: var(--text-lg);
+  display: flex; align-items: center; justify-content: center;
+}
+
+.digest-overflow-row {
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-bg-surface);
+  border-top: 1px solid var(--color-border-default);
+}
+.digest-overflow-row a {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+}
+.digest-overflow-row a:hover { color: var(--color-status-info); }
+
+/* ── Scrollbar polish ── */
+.email-list::-webkit-scrollbar,
+.detail-canvas::-webkit-scrollbar { width: 4px; }
+.email-list::-webkit-scrollbar-track,
+.detail-canvas::-webkit-scrollbar-track { background: transparent; }
+.email-list::-webkit-scrollbar-thumb,
+.detail-canvas::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: var(--radius-full);
+}
+
+</style>
+</head>
+<body>
+
+<!-- ─────────────────────────────────────────
+     APP BODY
+───────────────────────────────────────── -->
+<div class="app-body">
+
+  <!-- Left: email list -->
+  <div class="panel-list">
+    <div class="list-header">
+      <span class="list-header-label">Inbox</span>
+      <span class="list-header-count" id="inbox-count"></span>
+    </div>
+    <div class="email-list" id="email-list"></div>
+  </div>
+
+  <!-- Right: email detail -->
+  <div class="panel-detail">
+    <div class="detail-meta">
+      <div class="detail-meta-label">Subject</div>
+      <div class="detail-meta-subject" id="detail-subject"></div>
+    </div>
+    <div class="detail-canvas">
+      <div class="email" id="email-card"></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ─────────────────────────────────────────
+     DATA + LOGIC
+───────────────────────────────────────── -->
+<script>
+(function () {
+
+/* ── Avatar palette + WCAG contrast ─────────────────────────── */
+var AVATAR_PALETTE = [
+  '#0C8075','#1F6E8C','#5179A8','#5E6FB2','#6B63A8',
+  '#8C5F8F','#A86A7D','#AE7A6A','#AE9A6A','#9D8B45',
+  '#81A159','#5E8F52','#51A880','#3D9A9A','#62574E','#a56e45'
+];
+
+function wcagLum(hex) {
+  var lin = function(c) { c /= 255; return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); };
+  return 0.2126 * lin(parseInt(hex.slice(1,3),16)) +
+         0.7152 * lin(parseInt(hex.slice(3,5),16)) +
+         0.0722 * lin(parseInt(hex.slice(5,7),16));
+}
+
+function avatarFg(hex) {
+  var L = wcagLum(hex);
+  return (1.05 / (L + 0.05)) >= ((L + 0.05) / 0.05) ? '#FFFFFF' : '#222222';
+}
+
+/* ── Email data ──────────────────────────────────────────────── */
+var EMAILS = [
+  {
+    id: 1, variant: 'b', source: 'brand',
+    brand: 'Mohawk Flooring', product: 'Hardwood, LVP',
+    lead: { initials: 'AA', name: 'Abhau A.', location: 'Los Angeles, CA', store: '22 Test Dr, Toronto' },
+    activityBrands: 'Mohawk Flooring, Shaw Floors',
+    time: '2m ago', read: false, avatarBg: '#0C8075',
+  },
+  {
+    id: 2, variant: 'a', source: 'brand',
+    brand: 'Shaw Floors', product: 'Carpet',
+    lead: { initials: 'MR', name: 'Maria R.', location: 'Chicago, IL', store: '88 Oak Ave, Toronto' },
+    activityBrands: null,
+    time: '14m ago', read: false, avatarBg: '#1F6E8C',
+  },
+  {
+    id: 3, variant: 'c', source: 'brand',
+    brand: 'Armstrong Flooring', product: 'LVP',
+    lead: { initials: 'TK', name: 'Thomas K.', location: 'Seattle, WA', store: '15 Pine St, Toronto' },
+    activityBrands: null,
+    time: '1h ago', read: true, avatarBg: '#5179A8',
+  },
+  {
+    id: 4, variant: 'a', source: 'website',
+    brand: null, product: 'Tile',
+    lead: { initials: 'SP', name: 'Sarah P.', location: 'Austin, TX', store: '44 Maple Dr, Toronto' },
+    activityBrands: null,
+    time: '3h ago', read: true, avatarBg: '#9D8B45',
+  },
+  {
+    id: 5, variant: 'b', source: 'brand',
+    brand: 'Mohawk Flooring', product: 'Hardwood',
+    lead: { initials: 'JD', name: 'James D.', location: 'Miami, FL', store: '22 Test Dr, Toronto' },
+    activityBrands: 'Mohawk Flooring, Armstrong Flooring',
+    time: 'Yesterday', read: true, avatarBg: '#5E8F52',
+  },
+  /* Feature 2 — Gamified: handover notification */
+  {
+    id: 7, variant: 'handover', source: 'brand',
+    brand: 'Shaw Floors', product: 'LVP',
+    lead: { initials: 'PK', name: 'Peter K.', location: 'Boston, MA', store: '12 Park Ave, Toronto' },
+    handoverFrom: 'Sarah M.',
+    handoverNote: 'This client visited the showroom last week and was particularly interested in the Coastline Oak finish.',
+    time: '2d ago', read: true, avatarBg: '#3D9A9A',
+  },
+  /* Feature 3 — Weekly digest */
+  {
+    id: 8, variant: 'digest', source: null,
+    brand: null, product: null, lead: null,
+    weekOf: 'Jun 9, 2025',
+    time: 'Mon 8 AM', read: true, avatarBg: '#5179A8',
+  },
+];
+
+/* ── Helpers ─────────────────────────────────────────────────── */
+function subject(e) {
+  var prod = e.product;
+  var brand = e.brand;
+  if (e.variant === 'a') {
+    return e.source === 'website'
+      ? 'New website lead – ' + prod
+      : 'New ' + brand + ' lead – ' + prod;
+  }
+  if (e.variant === 'b') {
+    return e.source === 'website'
+      ? 'High-intent website lead – ' + prod
+      : 'High-intent ' + brand + ' lead – ' + prod;
+  }
+  if (e.variant === 'c') {
+    return e.source === 'website'
+      ? 'Lead assigned to you – ' + prod
+      : brand + ' lead assigned to you – ' + prod;
+  }
+  if (e.variant === 'handover') return brand + ' lead handed to you – ' + prod;
+  if (e.variant === 'digest') return 'Your team\'s leads · Week of ' + e.weekOf;
+  return '';
+}
+
+var URGENCY = {
+  a: 'Leads go cold fast — reach out now',
+  b: 'They know what they want — reach out now',
+  c: 'Reach out early — leads that wait go cold',
+};
+
+var CTA_ICON = { a: 'ph-lightning', b: 'ph-lightning', c: 'ph-arrow-right' };
+var CTA_LABEL = { a: 'Claim this lead', b: 'Claim this lead', c: 'View lead' };
+
+var CHIP = {
+  a: '<span class="chip chip-alert">Lead alert</span>',
+  b: '<span class="chip chip-intent">High Intent</span>',
+  c: '<span class="chip chip-assigned">Assigned</span>',
+};
+
+var BADGE_HTML = {
+  a: '<span class="badge badge-muted">Lead alert</span>',
+  b: '<span class="badge badge-high-intent">High Intent</span>',
+  c: '',
+  handover: '<span class="badge badge-assigned">Handed over</span>',
+  digest: '',
+};
+
+function sourceLabel(e) {
+  return e.source === 'website' ? 'Website' : e.brand;
+}
+
+function capProduct(str) {
+  if (!str) return str;
+  var parts = str.split(',').map(function(s){ return s.trim(); });
+  if (parts.length <= 3) return parts.join(', ');
+  return parts.slice(0, 3).join(', ') + ' +' + (parts.length - 3) + ' more';
+}
+
+/* ── Render list item ────────────────────────────────────────── */
+function renderListItem(e) {
+  var subj = subject(e);
+  var unreadClass = e.read ? '' : ' unread';
+  return (
+    '<div class="email-item' + unreadClass + '" data-id="' + e.id + '">' +
+      '<div class="item-content">' +
+        '<div class="item-top">' +
+          '<span class="item-sender">Roomvo</span>' +
+          '<span class="item-time">' + e.time + '</span>' +
+        '</div>' +
+        '<div class="item-subject">' + subj + '</div>' +
+      '</div>' +
+    '</div>'
+  );
+}
+
+var LOGO = '<img class="email-brand-logo" src="https://www.figma.com/api/mcp/asset/bd7dabcd-eb58-4cd9-b02f-8d29f0b49592" alt="roomvo">';
+var FOOTER_HTML =
+  '<div class="email-footer">' +
+    '<p class="email-footer-legal">This email was sent by Roomvo to <a href="#">rsa@dealer.com</a>. It is intended for the individual or entity that it is addressed to, and may contain confidential information.</p>' +
+    '<div class="email-footer-logo"><span class="email-footer-powered-by">Powered by</span><img class="email-footer-logo-img" src="https://www.figma.com/api/mcp/asset/bd7dabcd-eb58-4cd9-b02f-8d29f0b49592" alt="roomvo"></div>' +
+    '<div class="email-footer-address"><p>© 2023 Roomvo</p><p>1255 Bay St. Unit 403, Toronto, ON M5R 2A9</p></div>' +
+  '</div>';
+
+function emailHeader(variant) {
+  return '<div class="email-header"><div class="email-brand">' + LOGO + '</div>' + (BADGE_HTML[variant] || '') + '</div>';
+}
+
+function renderDigest(e) {
+  var CAP = 10;
+  var STAGE_ORDER = { 'New': 0, 'Contacted': 1, 'Quoted': 2, 'Won': 3, 'Lost': 4 };
+
+  function overflowRow(n) {
+    return '<div class="digest-overflow-row"><a href="#">+' + n + ' more &rarr; View all in CRM</a></div>';
+  }
+
+  /* ── Table A data (12 rows — triggers overflow) ── */
+  var tableA = [
+    { name:'Abhau A.',  firstName:'Abhau',  brand:'Mohawk',      stageLabel:'New',       stageOrder:0, owner:'Unclaimed', ageDays:1,  action:'Claim' },
+    { name:'Sarah P.',  firstName:'Sarah',  brand:'—',           stageLabel:'New',       stageOrder:0, owner:'Unclaimed', ageDays:1,  action:'Claim' },
+    { name:'James D.',  firstName:'James',  brand:'Mohawk',      stageLabel:'New',       stageOrder:0, owner:'Kyle B.',   ageDays:2,  action:'View'  },
+    { name:'Luca R.',   firstName:'Luca',   brand:'Mohawk',      stageLabel:'New',       stageOrder:0, owner:'Unclaimed', ageDays:4,  action:'Claim' },
+    { name:'Peter K.',  firstName:'Peter',  brand:'Shaw Floors', stageLabel:'New',       stageOrder:0, owner:'Sarah M.',  ageDays:6,  action:'View'  },
+    { name:'Yara N.',   firstName:'Yara',   brand:'Karastan',    stageLabel:'New',       stageOrder:0, owner:'Unclaimed', ageDays:7,  action:'Claim' },
+    { name:'Maria R.',  firstName:'Maria',  brand:'Shaw Floors', stageLabel:'Contacted', stageOrder:1, owner:'Sarah M.',  ageDays:3,  action:'View'  },
+    { name:'Diane C.',  firstName:'Diane',  brand:'Stainmaster', stageLabel:'Contacted', stageOrder:1, owner:'Kyle B.',   ageDays:5,  action:'View'  },
+    { name:'Oliver B.', firstName:'Oliver', brand:'Mohawk',      stageLabel:'Quoted',    stageOrder:2, owner:'Sarah M.',  ageDays:8,  action:'View'  },
+    { name:'Thomas K.', firstName:'Thomas', brand:'Armstrong',   stageLabel:'Quoted',    stageOrder:2, owner:'David L.',  ageDays:5,  action:'View'  },
+    { name:'Emma T.',   firstName:'Emma',   brand:'Shaw Floors', stageLabel:'Won',       stageOrder:3, owner:'Sarah M.',  ageDays:12, action:'View'  },
+    { name:'Frank L.',  firstName:'Frank',  brand:'Armstrong',   stageLabel:'Lost',      stageOrder:4, owner:'David L.',  ageDays:9,  action:'View'  },
+  ];
+
+  tableA.sort(function(a, b) {
+    if (a.stageOrder !== b.stageOrder) return b.stageOrder - a.stageOrder;
+    if (a.ageDays !== b.ageDays) return a.ageDays - b.ageDays;
+    return b.firstName.localeCompare(a.firstName);
+  });
+  var STAGE_CSS = { 'New':'s-new','Contacted':'s-contacted','Quoted':'s-quoted','Won':'s-quoted','Lost':'s-lost' };
+  var tableAHtml = tableA.slice(0, CAP).map(function(r) {
+    var actionCls = r.owner === 'Unclaimed' ? 'du-cta' : 'dt-action';
+    return '<div class="digest-table-row">' +
+      '<span class="dt-name">' + r.name + '</span>' +
+      '<span class="dt-brand">' + r.brand + '</span>' +
+      '<span><span class="stage ' + STAGE_CSS[r.stageLabel] + '">' + r.stageLabel + '</span></span>' +
+      '<span class="dt-owner">' + r.owner + '</span>' +
+      '<span class="dt-days">' + r.ageDays + 'd</span>' +
+      '<a class="' + actionCls + '" href="#">' + r.action + ' &rarr;</a>' +
+    '</div>';
+  }).join('');
+  if (tableA.length > CAP) tableAHtml += overflowRow(tableA.length - CAP);
+
+  /* ── Table B — Unclaimed: age desc, alpha ── */
+  var tableB = [
+    { name:'Yara N.',  firstName:'Yara',  brand:'Karastan',     ageDays:7 },
+    { name:'Luca R.',  firstName:'Luca',  brand:'Mohawk Flooring', ageDays:4 },
+    { name:'Abhau A.', firstName:'Abhau', brand:'Website lead', ageDays:1 },
+    { name:'Sarah P.', firstName:'Sarah', brand:'Website lead', ageDays:1 },
+  ];
+  tableB.sort(function(a, b) {
+    if (a.ageDays !== b.ageDays) return b.ageDays - a.ageDays;
+    return a.firstName.localeCompare(b.firstName);
+  });
+  var tableBHtml = tableB.slice(0, CAP).map(function(r) {
+    return '<div class="digest-unclaimed-row"><div><div class="du-name">' + r.name + '</div>' +
+      '<div class="du-meta">' + r.brand + ' &middot; Waiting ' + r.ageDays + ' day' + (r.ageDays !== 1 ? 's' : '') + '</div></div>' +
+      '<a class="du-cta" href="#">Claim now &rarr;</a></div>';
+  }).join('');
+  if (tableB.length > CAP) tableBHtml += overflowRow(tableB.length - CAP);
+
+  /* ── Table C — Languishing: staleDays desc, alpha ── */
+  var tableC = [
+    { name:'Oliver B.', firstName:'Oliver', brand:'Mohawk',      owner:'Sarah M.', staleDays:8 },
+    { name:'Peter K.',  firstName:'Peter',  brand:'Shaw Floors', owner:'Sarah M.', staleDays:6 },
+    { name:'Thomas K.', firstName:'Thomas', brand:'Armstrong',   owner:'David L.', staleDays:5 },
+  ];
+  tableC.sort(function(a, b) {
+    if (a.staleDays !== b.staleDays) return b.staleDays - a.staleDays;
+    return a.firstName.localeCompare(b.firstName);
+  });
+  var tableCHtml = tableC.slice(0, CAP).map(function(r) {
+    return '<div class="digest-lang-row"><div>' +
+      '<div class="dl-name">' + r.name + '</div>' +
+      '<div class="dl-meta">' + r.brand + ' &middot; Claimed by ' + r.owner + ' &middot; No update in ' + r.staleDays + ' days</div>' +
+      '</div><a class="dl-action" href="#">View &rarr;</a></div>';
+  }).join('');
+  if (tableC.length > CAP) tableCHtml += overflowRow(tableC.length - CAP);
+
+  /* ── Table D — Leaderboard: claimed desc, closed desc ── */
+  var tableD = [
+    { name:'Sarah M.', medal:'🥇', claimed:4, closed:1 },
+    { name:'Kyle B.',  medal:'🥈', claimed:2, closed:0 },
+    { name:'David L.', medal:'🥉', claimed:1, closed:1 },
+  ];
+  tableD.sort(function(a, b) {
+    if (a.claimed !== b.claimed) return b.claimed - a.claimed;
+    return b.closed - a.closed;
+  });
+  var tableDHtml = tableD.map(function(r) {
+    return '<div class="digest-lb-row"><span class="lb-medal">' + r.medal + '</span>' +
+      '<span class="lb-name">' + r.name + '</span>' +
+      '<span class="lb-count">' + r.claimed + ' claimed' + (r.closed ? ', ' + r.closed + ' closed' : '') + '</span></div>';
+  }).join('');
+
+  return emailHeader('digest') +
+    '<div class="digest-header">' +
+      '<div class="digest-eyebrow">Week of ' + e.weekOf + '</div>' +
+      '<div class="digest-title">Your team\'s leads</div>' +
+    '</div>' +
+    '<div class="digest-body">' +
+
+      '<div class="digest-section">' +
+        '<div class="digest-section-hd">' +
+          '<span class="digest-section-title"><i class="ph ph-list-bullets"></i> This week\'s leads</span>' +
+          '<span class="digest-section-count">' + tableA.length + ' leads</span>' +
+        '</div>' +
+        '<div class="digest-table">' +
+          '<div class="digest-table-head"><span>Name</span><span>Brand</span><span>Stage</span><span>Owner</span><span>Age</span><span></span></div>' +
+          tableAHtml +
+        '</div>' +
+      '</div>' +
+
+      '<div class="digest-section">' +
+        '<div class="digest-section-hd">' +
+          '<span class="digest-section-title"><i class="ph ph-warning"></i> Unclaimed leads</span>' +
+          '<span class="digest-section-count">' + tableB.length + ' waiting</span>' +
+        '</div>' +
+        '<div class="digest-unclaimed-list">' + tableBHtml + '</div>' +
+      '</div>' +
+
+      '<div class="digest-section">' +
+        '<div class="digest-section-hd">' +
+          '<span class="digest-section-title"><i class="ph ph-clock"></i> Languishing leads</span>' +
+          '<span class="digest-section-count">' + tableC.length + ' at risk</span>' +
+        '</div>' +
+        '<div class="digest-lang-list">' + tableCHtml + '</div>' +
+      '</div>' +
+
+      '<div class="digest-section">' +
+        '<div class="digest-section-hd">' +
+          '<span class="digest-section-title"><i class="ph ph-trophy"></i> Top performers this week</span>' +
+        '</div>' +
+        '<div class="digest-lb">' + tableDHtml + '</div>' +
+      '</div>' +
+
+    '</div>' +
+    FOOTER_HTML;
+}
+
+/* ── Render email card ───────────────────────────────────────── */
+function renderEmail(e) {
+  /* ── Digest ── */
+  if (e.variant === 'digest') return renderDigest(e);
+
+  var srcLabel = sourceLabel(e);
+
+  /* ── Handover ── */
+  if (e.variant === 'handover') {
+    return emailHeader('handover') +
+      '<div class="email-body">' +
+        '<div class="handover-banner">' +
+          '<span class="handover-banner-icon"><i class="ph ph-arrows-left-right"></i></span>' +
+          '<div class="handover-banner-text">' + e.handoverFrom + ' handed you this lead</div>' +
+        '</div>' +
+        '<div class="lead-row">' +
+          '<div class="lead-avatar" style="background:' + e.avatarBg + ';color:' + avatarFg(e.avatarBg) + '">' + e.lead.initials + '</div>' +
+          '<div><div class="lead-name">' + e.lead.name + '</div></div>' +
+        '</div>' +
+        '<div class="info-grid">' +
+          '<div class="info-cell"><span class="cell-label">Location</span><span class="cell-value">' + e.lead.location + '</span></div>' +
+          '<div class="info-cell"><span class="cell-label">Store</span><span class="cell-value">' + e.lead.store + '</span></div>' +
+          '<div class="info-cell"><span class="cell-label">Source</span><span class="cell-value">' + srcLabel + '</span></div>' +
+          '<div class="info-cell"><span class="cell-label">Product</span><span class="cell-value">' + capProduct(e.product) + '</span></div>' +
+          '<div class="info-cell cell-contact"><span class="cell-label">Contact</span><a class="cell-lock-link" href="#"><i class="ph ph-lock-simple"></i><span class="lock-text">Phone and email available in the CRM</span></a></div>' +
+        '</div>' +
+        '<div class="handover-note">&ldquo;' + e.handoverNote + '&rdquo;</div>' +
+        '<a class="cta-btn" href="#"><i class="ph ph-arrow-right"></i>View lead</a>' +
+        '<p class="urgency">' + URGENCY.c + '</p>' +
+      '</div>' +
+      FOOTER_HTML;
+  }
+
+  var metaLine = e.lead.location + ' · ' + srcLabel;
+
+  var activityHTML = '';
+  if (e.variant === 'b') {
+    activityHTML =
+      '<div class="activity-section">' +
+        '<div class="activity-header">Lead Activity</div>' +
+        '<div class="activity-rows">' +
+          '<div class="activity-row"><span class="activity-icon"><i class="ph ph-eye"></i></span><span>Viewed <strong>' + (e.product ? e.product.split(',')[0].trim().toLowerCase() : '') + '</strong> 3× across 2 sessions</span></div>' +
+          '<div class="activity-row"><span class="activity-icon"><i class="ph ph-heart"></i></span><span>Saved 2 products to room visualizer</span></div>' +
+          '<div class="activity-row"><span class="activity-icon"><i class="ph ph-timer"></i></span><span>8 min avg session · above average</span></div>' +
+          '<div class="activity-row"><span class="activity-icon"><i class="ph ph-tag"></i></span><span>Brands surveyed: <strong>' + (e.activityBrands || srcLabel) + '</strong></span></div>' +
+        '</div>' +
+      '</div>';
+  }
+
+  var lockCopy = e.variant === 'c'
+    ? 'Phone and email available in the CRM'
+    : 'Phone and email available after claiming';
+
+  return (
+    emailHeader(e.variant) +
+
+    '<div class="email-body">' +
+
+      '<div class="lead-row">' +
+        '<div class="lead-avatar" style="background:' + e.avatarBg + ';color:' + avatarFg(e.avatarBg) + '">' + e.lead.initials + '</div>' +
+        '<div>' +
+          '<div class="lead-name">' + e.lead.name + '</div>' +
+        '</div>' +
+      '</div>' +
+
+      '<div class="info-grid">' +
+        '<div class="info-cell"><span class="cell-label">Location</span><span class="cell-value">' + e.lead.location + '</span></div>' +
+        '<div class="info-cell"><span class="cell-label">Store</span><span class="cell-value">' + e.lead.store + '</span></div>' +
+        '<div class="info-cell"><span class="cell-label">Source</span><span class="cell-value">' + srcLabel + '</span></div>' +
+        '<div class="info-cell"><span class="cell-label">Product</span><span class="cell-value">' + capProduct(e.product) + '</span></div>' +
+        '<div class="info-cell cell-contact"><span class="cell-label">Contact</span><a class="cell-lock-link" href="#"><i class="ph ph-lock-simple"></i><span class="lock-text">' + lockCopy + '</span></a></div>' +
+      '</div>' +
+      activityHTML +
+
+      '<a class="cta-btn" href="#"><i class="ph ' + CTA_ICON[e.variant] + '"></i>' + CTA_LABEL[e.variant] + '</a>' +
+      '<p class="urgency">' + URGENCY[e.variant] + '</p>' +
+
+    '</div>' +
+
+    FOOTER_HTML
+  );
+}
+
+/* ── Mount list ──────────────────────────────────────────────── */
+var listEl = document.getElementById('email-list');
+listEl.innerHTML = EMAILS.map(renderListItem).join('');
+document.getElementById('inbox-count').textContent = EMAILS.length;
+
+/* ── Select email ────────────────────────────────────────────── */
+var currentId = null;
+
+function select(id) {
+  if (id === currentId) return;
+  currentId = id;
+
+  /* Update list selection */
+  document.querySelectorAll('.email-item').forEach(function (el) {
+    el.classList.toggle('selected', parseInt(el.dataset.id) === id);
+  });
+
+  var e = EMAILS.find(function (x) { return x.id === id; });
+  if (!e) return;
+
+  /* Mark as read */
+  e.read = true;
+  var listItem = listEl.querySelector('[data-id="' + id + '"]');
+  if (listItem) listItem.classList.remove('unread');
+
+  /* Render detail */
+  document.getElementById('detail-subject').textContent = subject(e);
+  document.getElementById('email-card').innerHTML = renderEmail(e);
+
+  /* Prevent default on CTA */
+  document.querySelectorAll('.cta-btn').forEach(function (btn) {
+    btn.addEventListener('click', function (ev) { ev.preventDefault(); });
+  });
+}
+
+/* ── Event delegation on list ────────────────────────────────── */
+listEl.addEventListener('click', function (ev) {
+  var item = ev.target.closest('.email-item');
+  if (item) select(parseInt(item.dataset.id));
+});
+
+/* ── Initial selection ───────────────────────────────────────── */
+select(EMAILS[0].id);
+
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "mcp__95be6216-13bd-4375-985b-b722efff9c6d__whoami",
+      "WebFetch(domain:gabrielfaucon.com)",
+      "mcp__95be6216-13bd-4375-985b-b722efff9c6d__get_metadata",
+      "mcp__95be6216-13bd-4375-985b-b722efff9c6d__get_libraries",
+      "mcp__95be6216-13bd-4375-985b-b722efff9c6d__use_figma",
+      "Bash(mkdir -p \"/Users/franskarlsson/Documents/Claude Projects/Lead Gen Automated Emails/.claude\")",
+      "mcp__Claude_Preview__preview_start",
+      "mcp__95be6216-13bd-4375-985b-b722efff9c6d__get_design_context"
+    ]
+  }
+}
