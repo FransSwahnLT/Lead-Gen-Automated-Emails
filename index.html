@@ -84,7 +84,7 @@
   --email-header-fg:       var(--p-neutral-0);
   --email-card-bg:         var(--p-neutral-1000);
   --email-cell-bg:         var(--p-neutral-900);
-  --email-activity-bg:     var(--color-status-warning-bg);
+  --email-activity-bg:     color-mix(in srgb, var(--color-brand-primary) 10%, transparent);
   --email-activity-border: var(--color-overlay-medium);
 }
 
@@ -321,7 +321,7 @@ body {
 /* Header */
 .email-header {
   background: var(--email-header-bg);
-  padding: var(--space-4) var(--space-5);
+  padding: var(--space-4) var(--space-5) 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -342,12 +342,14 @@ body {
 }
 
 .badge {
-  font-size: var(--text-xs);
-  font-weight: 700;
-  letter-spacing: 0.4px;
-  text-transform: uppercase;
-  padding: var(--space-1) var(--space-3);
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 var(--space-3);
   border-radius: var(--radius-full);
+  font-size: var(--text-md);
+  font-weight: 400;
+  line-height: 21px;
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -357,7 +359,7 @@ body {
 
 /* Body */
 .email-body {
-  padding: var(--space-5);
+  padding: var(--space-6) var(--space-5) var(--space-5);
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
@@ -378,9 +380,8 @@ body {
   align-items: center;
   justify-content: center;
   font-size: var(--text-sm);
-  font-weight: 700;
+  font-weight: 600;
   color: var(--color-text-secondary);
-  letter-spacing: 0.5px;
   flex-shrink: 0;
 }
 
@@ -388,8 +389,7 @@ body {
   font-size: var(--text-lg);
   font-weight: 600;
   color: var(--color-text-primary);
-  line-height: var(--leading-lg);
-  letter-spacing: -0.1px;
+  line-height: 1.5;
 }
 
 .lead-meta {
@@ -418,37 +418,36 @@ body {
 }
 
 .cell-label {
-  font-size: var(--text-xs);
+  font-size: var(--text-sm);
   font-weight: 600;
-  letter-spacing: 0.4px;
   text-transform: uppercase;
   color: var(--color-text-caption);
-  line-height: var(--leading-xs);
+  line-height: 1.5;
 }
 
 .cell-value {
   font-size: var(--text-md);
-  font-weight: 500;
+  font-weight: 400;
   color: var(--color-text-primary);
-  line-height: var(--leading-md);
+  line-height: 1.5;
 }
 
 .cell-link {
   font-size: var(--text-md);
-  font-weight: 500;
+  font-weight: 400;
   color: var(--color-status-info);
   text-decoration: none;
-  line-height: var(--leading-md);
+  line-height: 1.5;
 }
 
 .cell-link:hover { text-decoration: underline; }
 
 .cell-lock-link {
   font-size: var(--text-md);
-  font-weight: 500;
+  font-weight: 400;
   color: var(--color-status-info);
   text-decoration: none;
-  line-height: var(--leading-md);
+  line-height: 1.5;
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
@@ -470,11 +469,11 @@ body {
 .activity-header {
   background: var(--email-activity-bg);
   padding: var(--space-2) var(--space-4);
-  font-size: var(--text-xs);
-  font-weight: 700;
-  letter-spacing: 0.4px;
+  font-size: var(--text-sm);
+  font-weight: 600;
   text-transform: uppercase;
   color: var(--color-text-caption);
+  line-height: 1.5;
 }
 
 .activity-rows {
@@ -503,30 +502,92 @@ body {
   align-items: center;
 }
 
+.activity-empty {
+  background: var(--email-activity-bg);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.activity-empty-title {
+  font-size: var(--text-md);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: var(--leading-md);
+}
+.activity-empty-sub {
+  font-size: var(--text-md);
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  line-height: var(--leading-md);
+}
+
+.uploaded-rooms {
+  background: var(--email-activity-bg);
+  padding: var(--space-3) var(--space-4) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.uploaded-rooms-carousel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3) var(--space-4);
+}
+.room-photo-cell {
+  position: relative;
+}
+.room-type-badge {
+  position: absolute;
+  top: var(--space-2);
+  left: var(--space-2);
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  background: var(--p-neutral-100);
+  font-size: var(--text-xs);
+  font-weight: 400;
+  color: #FFFFFF;
+  white-space: nowrap;
+  line-height: 1;
+  pointer-events: none;
+}
+.room-thumb {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  height: auto;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  display: block;
+}
+
 
 /* CTA */
 .cta-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-2);
+  gap: var(--space-1);
   width: 100%;
-  padding: var(--space-4);
+  height: 42px;
+  padding: 0 var(--space-5);
   background: var(--color-brand-primary);
-  color: var(--color-brand-on-primary);
+  color: var(--color-text-inverse);
   text-decoration: none;
   font-family: 'Inter', system-ui, sans-serif;
   font-size: var(--text-lg);
-  font-weight: 600;
-  border-radius: var(--radius-lg);
+  font-weight: 500;
+  border-radius: var(--radius-md);
   border: none;
   cursor: pointer;
-  line-height: var(--leading-lg);
-  letter-spacing: -0.1px;
+  line-height: normal;
   transition: opacity 150ms ease-in-out;
 }
 
-.cta-btn i { font-size: var(--text-xl); line-height: 1; }
+.cta-btn i { font-size: var(--text-2xl); line-height: 1; }
 
 .cta-btn:hover { opacity: 0.88; }
 
@@ -534,7 +595,7 @@ body {
 .urgency {
   text-align: center;
   font-size: var(--text-sm);
-  color: var(--color-text-secondary);
+  color: var(--color-text-primary);
   line-height: var(--leading-sm);
 }
 
@@ -631,12 +692,12 @@ body {
   border-bottom: 1px solid var(--color-border-default);
 }
 .digest-eyebrow {
-  font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
-  color: var(--color-text-caption); margin-bottom: var(--space-1);
+  font-size: var(--text-sm); font-weight: 600; text-transform: uppercase;
+  color: var(--color-text-caption); margin-bottom: var(--space-1); line-height: 1.5;
 }
 .digest-title {
-  font-size: var(--text-xl); font-weight: 700; color: var(--color-text-primary);
-  letter-spacing: -0.3px; line-height: var(--leading-xl);
+  font-size: var(--text-xl); font-weight: 600; color: var(--color-text-primary);
+  line-height: 1.5;
 }
 .digest-body { padding: var(--space-4) var(--space-5); display: flex; flex-direction: column; gap: var(--space-5); }
 .digest-section { display: flex; flex-direction: column; gap: var(--space-3); }
@@ -645,38 +706,56 @@ body {
 }
 .digest-section-title {
   display: flex; align-items: center; gap: var(--space-2);
-  font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase;
-  color: var(--color-text-caption);
+  font-size: var(--text-sm); font-weight: 600; text-transform: uppercase;
+  color: var(--color-text-caption); line-height: 1.5;
 }
 .digest-section-count {
-  font-size: var(--text-xs); font-weight: 600; color: var(--color-text-secondary);
-  background: var(--color-bg-surface); padding: 1px var(--space-2); border-radius: var(--radius-full);
+  display: inline-flex; align-items: center;
+  height: 24px; padding: 0 var(--space-2);
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(0,0,0,0.12);
+  font-size: var(--text-sm); font-weight: 400;
+  color: var(--color-text-secondary); white-space: nowrap;
 }
 .digest-table { border: 1px solid var(--color-border-default); border-radius: var(--radius-md); overflow: hidden; }
 .digest-table-head {
-  display: grid; grid-template-columns: 1.2fr 1fr 90px 80px 32px 52px;
+  display: grid; grid-template-columns: 2fr 110px 1fr 32px auto;
   gap: var(--space-2); padding: var(--space-2) var(--space-3);
-  background: var(--color-bg-surface); border-bottom: 1px solid var(--color-border-default);
-  font-size: var(--text-xs); font-weight: 700; letter-spacing: 0.3px; text-transform: uppercase;
-  color: var(--color-text-caption);
+  border-bottom: 1px solid var(--color-border-default);
+  font-size: var(--text-md); font-weight: 600;
+  color: var(--color-text-secondary); line-height: 1.5;
 }
 .digest-table-row {
-  display: grid; grid-template-columns: 1.2fr 1fr 90px 80px 32px 52px;
-  gap: var(--space-2); padding: var(--space-3);
-  border-bottom: 1px solid var(--color-border-default);
-  font-size: var(--text-sm); align-items: center;
+  display: grid; grid-template-columns: 2fr 110px 1fr 32px auto;
+  gap: var(--space-2); padding: var(--space-2) var(--space-3);
+  min-height: 48px;
+  font-size: var(--text-md); align-items: center;
 }
-.digest-table-row:last-child { border-bottom: none; }
 .dt-name { font-weight: 600; color: var(--color-text-primary); }
-.dt-brand { color: var(--color-text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dt-owner { color: var(--color-text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dt-days { color: var(--color-text-caption); }
-.dt-action { font-weight: 600; color: var(--color-status-info); text-decoration: none; white-space: nowrap; font-size: var(--text-xs); }
-.stage { font-size: var(--text-xs); font-weight: 600; padding: 2px var(--space-2); border-radius: var(--radius-full); white-space: nowrap; display: inline-block; }
-.s-new        { background: var(--color-status-info-bg); color: var(--color-status-info); }
-.s-contacted  { background: var(--color-status-warning-bg); color: var(--color-status-warning); }
-.s-quoted     { background: var(--color-status-success-bg); color: var(--color-status-success); }
-.s-lost       { background: var(--color-status-error-bg); color: var(--color-status-error); }
+.dt-claim-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 30px; padding: 0 10px;
+  border: 1px solid rgba(0,0,0,0.12); border-radius: var(--radius-sm);
+  font-size: var(--text-sm); font-weight: 500;
+  color: var(--color-text-primary); text-decoration: none; white-space: nowrap;
+}
+.stage-chip {
+  display: inline-flex; align-items: center;
+  height: 24px; padding: 0 var(--space-2);
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(0,0,0,0.12);
+  font-size: var(--text-sm); font-weight: 400;
+  color: var(--color-text-primary); white-space: nowrap;
+}
+.s-new-lead     { background: #F2EBE5; }
+.s-follow-up    { background: #AFC9FA; }
+.s-consultation { background: #FADFAF; }
+.s-measured     { background: #B9ECF1; }
+.s-quoted       { background: #D4C5F9; }
+.s-won          { background: #C0EDD4; }
+.s-lost         { background: #F5C4C0; }
 
 .digest-unclaimed-list { background: var(--color-status-warning-bg); border-radius: var(--radius-md); overflow: hidden; }
 .digest-unclaimed-row {
@@ -685,7 +764,7 @@ body {
 }
 .digest-unclaimed-row:last-child { border-bottom: none; }
 .du-name { font-size: var(--text-sm); font-weight: 600; color: var(--color-text-primary); }
-.du-meta { font-size: var(--text-xs); color: var(--color-text-secondary); margin-top: 1px; }
+.du-meta { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.5; margin-top: 1px; }
 .du-cta { font-size: var(--text-sm); font-weight: 600; color: var(--color-status-info); text-decoration: none; white-space: nowrap; flex-shrink: 0; }
 
 .digest-lang-list { background: var(--color-bg-surface); border-radius: var(--radius-md); overflow: hidden; }
@@ -695,7 +774,7 @@ body {
 }
 .digest-lang-row:last-child { border-bottom: none; }
 .dl-name { font-size: var(--text-sm); font-weight: 600; color: var(--color-text-primary); }
-.dl-meta { font-size: var(--text-xs); color: var(--color-text-secondary); margin-top: 1px; }
+.dl-meta { font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.5; margin-top: 1px; }
 .dl-action { font-size: var(--text-sm); font-weight: 600; color: var(--color-text-secondary); text-decoration: none; white-space: nowrap; flex-shrink: 0; }
 
 .digest-lb { display: flex; flex-direction: column; gap: var(--space-2); }
@@ -706,7 +785,7 @@ body {
 }
 .lb-medal { font-size: var(--text-lg); flex-shrink: 0; width: 22px; text-align: center; line-height: 1; }
 .lb-name { font-size: var(--text-sm); font-weight: 600; color: var(--color-text-primary); flex: 1; }
-.lb-count { font-size: var(--text-xs); color: var(--color-text-secondary); font-weight: 500; }
+.lb-count { font-size: var(--text-sm); color: var(--color-text-secondary); font-weight: 400; line-height: 1.5; }
 
 .item-avatar-icon {
   background: var(--color-bg-surface-alt);
@@ -721,10 +800,11 @@ body {
   border-top: 1px solid var(--color-border-default);
 }
 .digest-overflow-row a {
-  font-size: var(--text-xs);
+  font-size: var(--text-sm);
   font-weight: 600;
   color: var(--color-text-secondary);
   text-decoration: none;
+  line-height: 1.5;
 }
 .digest-overflow-row a:hover { color: var(--color-status-info); }
 
@@ -880,7 +960,7 @@ var URGENCY = {
   c: 'Reach out early — leads that wait go cold',
 };
 
-var CTA_ICON = { a: 'ph-lightning', b: 'ph-lightning', c: 'ph-arrow-right' };
+var CTA_ICON = { a: 'ph-arrow-right', b: 'ph-arrow-right', c: 'ph-arrow-right' };
 var CTA_LABEL = { a: 'Claim this lead', b: 'Claim this lead', c: 'View lead' };
 
 var CHIP = {
@@ -890,8 +970,8 @@ var CHIP = {
 };
 
 var BADGE_HTML = {
-  a: '<span class="badge badge-muted">Lead alert</span>',
-  b: '<span class="badge badge-high-intent">High Intent</span>',
+  a: '',
+  b: '',
   c: '',
   handover: '<span class="badge badge-assigned">Handed over</span>',
   digest: '',
@@ -939,7 +1019,7 @@ function emailHeader(variant) {
 
 function renderDigest(e) {
   var CAP = 10;
-  var STAGE_ORDER = { 'New': 0, 'Contacted': 1, 'Quoted': 2, 'Won': 3, 'Lost': 4 };
+  var STAGE_ORDER = { 'New lead': 0, 'Follow-up': 1, 'Consultation': 2, 'Measured': 3, 'Quoted': 4, 'Won': 5, 'Lost': 6 };
 
   function overflowRow(n) {
     return '<div class="digest-overflow-row"><a href="#">+' + n + ' more &rarr; View all in CRM</a></div>';
@@ -947,18 +1027,18 @@ function renderDigest(e) {
 
   /* ── Table A data (12 rows — triggers overflow) ── */
   var tableA = [
-    { name:'Abhau A.',  firstName:'Abhau',  brand:'Mohawk',      stageLabel:'New',       stageOrder:0, owner:'Unclaimed', ageDays:1,  action:'Claim' },
-    { name:'Sarah P.',  firstName:'Sarah',  brand:'—',           stageLabel:'New',       stageOrder:0, owner:'Unclaimed', ageDays:1,  action:'Claim' },
-    { name:'James D.',  firstName:'James',  brand:'Mohawk',      stageLabel:'New',       stageOrder:0, owner:'Kyle B.',   ageDays:2,  action:'View'  },
-    { name:'Luca R.',   firstName:'Luca',   brand:'Mohawk',      stageLabel:'New',       stageOrder:0, owner:'Unclaimed', ageDays:4,  action:'Claim' },
-    { name:'Peter K.',  firstName:'Peter',  brand:'Shaw Floors', stageLabel:'New',       stageOrder:0, owner:'Sarah M.',  ageDays:6,  action:'View'  },
-    { name:'Yara N.',   firstName:'Yara',   brand:'Karastan',    stageLabel:'New',       stageOrder:0, owner:'Unclaimed', ageDays:7,  action:'Claim' },
-    { name:'Maria R.',  firstName:'Maria',  brand:'Shaw Floors', stageLabel:'Contacted', stageOrder:1, owner:'Sarah M.',  ageDays:3,  action:'View'  },
-    { name:'Diane C.',  firstName:'Diane',  brand:'Stainmaster', stageLabel:'Contacted', stageOrder:1, owner:'Kyle B.',   ageDays:5,  action:'View'  },
-    { name:'Oliver B.', firstName:'Oliver', brand:'Mohawk',      stageLabel:'Quoted',    stageOrder:2, owner:'Sarah M.',  ageDays:8,  action:'View'  },
-    { name:'Thomas K.', firstName:'Thomas', brand:'Armstrong',   stageLabel:'Quoted',    stageOrder:2, owner:'David L.',  ageDays:5,  action:'View'  },
-    { name:'Emma T.',   firstName:'Emma',   brand:'Shaw Floors', stageLabel:'Won',       stageOrder:3, owner:'Sarah M.',  ageDays:12, action:'View'  },
-    { name:'Frank L.',  firstName:'Frank',  brand:'Armstrong',   stageLabel:'Lost',      stageOrder:4, owner:'David L.',  ageDays:9,  action:'View'  },
+    { name:'Abhau A.',  firstName:'Abhau',  stageLabel:'New lead',     stageOrder:0, owner:'Unclaimed', ageDays:1,  action:'Claim' },
+    { name:'Sarah P.',  firstName:'Sarah',  stageLabel:'New lead',     stageOrder:0, owner:'Unclaimed', ageDays:1,  action:'Claim' },
+    { name:'James D.',  firstName:'James',  stageLabel:'New lead',     stageOrder:0, owner:'Kyle B.',   ageDays:2,  action:'View'  },
+    { name:'Luca R.',   firstName:'Luca',   stageLabel:'New lead',     stageOrder:0, owner:'Unclaimed', ageDays:4,  action:'Claim' },
+    { name:'Peter K.',  firstName:'Peter',  stageLabel:'New lead',     stageOrder:0, owner:'Sarah M.',  ageDays:6,  action:'View'  },
+    { name:'Yara N.',   firstName:'Yara',   stageLabel:'New lead',     stageOrder:0, owner:'Unclaimed', ageDays:7,  action:'Claim' },
+    { name:'Maria R.',  firstName:'Maria',  stageLabel:'Follow-up',    stageOrder:1, owner:'Sarah M.',  ageDays:3,  action:'View'  },
+    { name:'Diane C.',  firstName:'Diane',  stageLabel:'Consultation', stageOrder:2, owner:'Kyle B.',   ageDays:5,  action:'View'  },
+    { name:'Oliver B.', firstName:'Oliver', stageLabel:'Measured',     stageOrder:3, owner:'Sarah M.',  ageDays:8,  action:'View'  },
+    { name:'Thomas K.', firstName:'Thomas', stageLabel:'Quoted',       stageOrder:4, owner:'David L.',  ageDays:5,  action:'View'  },
+    { name:'Emma T.',   firstName:'Emma',   stageLabel:'Won',          stageOrder:5, owner:'Sarah M.',  ageDays:12, action:'View'  },
+    { name:'Frank L.',  firstName:'Frank',  stageLabel:'Lost',         stageOrder:6, owner:'David L.',  ageDays:9,  action:'View'  },
   ];
 
   tableA.sort(function(a, b) {
@@ -966,26 +1046,27 @@ function renderDigest(e) {
     if (a.ageDays !== b.ageDays) return a.ageDays - b.ageDays;
     return b.firstName.localeCompare(a.firstName);
   });
-  var STAGE_CSS = { 'New':'s-new','Contacted':'s-contacted','Quoted':'s-quoted','Won':'s-quoted','Lost':'s-lost' };
+  var STAGE_CSS = { 'New lead':'s-new-lead','Follow-up':'s-follow-up','Consultation':'s-consultation','Measured':'s-measured','Quoted':'s-quoted','Won':'s-won','Lost':'s-lost' };
   var tableAHtml = tableA.slice(0, CAP).map(function(r) {
-    var actionCls = r.owner === 'Unclaimed' ? 'du-cta' : 'dt-action';
+    var actionHtml = r.action === 'Claim'
+      ? '<a class="dt-claim-btn" href="#">Claim</a>'
+      : '<span></span>';
     return '<div class="digest-table-row">' +
       '<span class="dt-name">' + r.name + '</span>' +
-      '<span class="dt-brand">' + r.brand + '</span>' +
-      '<span><span class="stage ' + STAGE_CSS[r.stageLabel] + '">' + r.stageLabel + '</span></span>' +
+      '<span><span class="stage-chip ' + STAGE_CSS[r.stageLabel] + '">' + r.stageLabel + '</span></span>' +
       '<span class="dt-owner">' + r.owner + '</span>' +
       '<span class="dt-days">' + r.ageDays + 'd</span>' +
-      '<a class="' + actionCls + '" href="#">' + r.action + ' &rarr;</a>' +
+      actionHtml +
     '</div>';
   }).join('');
   if (tableA.length > CAP) tableAHtml += overflowRow(tableA.length - CAP);
 
   /* ── Table B — Unclaimed: age desc, alpha ── */
   var tableB = [
-    { name:'Yara N.',  firstName:'Yara',  brand:'Karastan',     ageDays:7 },
-    { name:'Luca R.',  firstName:'Luca',  brand:'Mohawk Flooring', ageDays:4 },
-    { name:'Abhau A.', firstName:'Abhau', brand:'Website lead', ageDays:1 },
-    { name:'Sarah P.', firstName:'Sarah', brand:'Website lead', ageDays:1 },
+    { name:'Yara N.',  firstName:'Yara',  ageDays:7 },
+    { name:'Luca R.',  firstName:'Luca',  ageDays:4 },
+    { name:'Abhau A.', firstName:'Abhau', ageDays:1 },
+    { name:'Sarah P.', firstName:'Sarah', ageDays:1 },
   ];
   tableB.sort(function(a, b) {
     if (a.ageDays !== b.ageDays) return b.ageDays - a.ageDays;
@@ -993,16 +1074,16 @@ function renderDigest(e) {
   });
   var tableBHtml = tableB.slice(0, CAP).map(function(r) {
     return '<div class="digest-unclaimed-row"><div><div class="du-name">' + r.name + '</div>' +
-      '<div class="du-meta">' + r.brand + ' &middot; Waiting ' + r.ageDays + ' day' + (r.ageDays !== 1 ? 's' : '') + '</div></div>' +
+      '<div class="du-meta">Waiting ' + r.ageDays + ' day' + (r.ageDays !== 1 ? 's' : '') + '</div></div>' +
       '<a class="du-cta" href="#">Claim now &rarr;</a></div>';
   }).join('');
   if (tableB.length > CAP) tableBHtml += overflowRow(tableB.length - CAP);
 
   /* ── Table C — Languishing: staleDays desc, alpha ── */
   var tableC = [
-    { name:'Oliver B.', firstName:'Oliver', brand:'Mohawk',      owner:'Sarah M.', staleDays:8 },
-    { name:'Peter K.',  firstName:'Peter',  brand:'Shaw Floors', owner:'Sarah M.', staleDays:6 },
-    { name:'Thomas K.', firstName:'Thomas', brand:'Armstrong',   owner:'David L.', staleDays:5 },
+    { name:'Oliver B.', firstName:'Oliver', owner:'Sarah M.', staleDays:8 },
+    { name:'Peter K.',  firstName:'Peter',  owner:'Sarah M.', staleDays:6 },
+    { name:'Thomas K.', firstName:'Thomas', owner:'David L.', staleDays:5 },
   ];
   tableC.sort(function(a, b) {
     if (a.staleDays !== b.staleDays) return b.staleDays - a.staleDays;
@@ -1011,7 +1092,7 @@ function renderDigest(e) {
   var tableCHtml = tableC.slice(0, CAP).map(function(r) {
     return '<div class="digest-lang-row"><div>' +
       '<div class="dl-name">' + r.name + '</div>' +
-      '<div class="dl-meta">' + r.brand + ' &middot; Claimed by ' + r.owner + ' &middot; No update in ' + r.staleDays + ' days</div>' +
+      '<div class="dl-meta">Claimed by ' + r.owner + ' &middot; No update in ' + r.staleDays + ' days</div>' +
       '</div><a class="dl-action" href="#">View &rarr;</a></div>';
   }).join('');
   if (tableC.length > CAP) tableCHtml += overflowRow(tableC.length - CAP);
@@ -1045,7 +1126,7 @@ function renderDigest(e) {
           '<span class="digest-section-count">' + tableA.length + ' leads</span>' +
         '</div>' +
         '<div class="digest-table">' +
-          '<div class="digest-table-head"><span>Name</span><span>Brand</span><span>Stage</span><span>Owner</span><span>Age</span><span></span></div>' +
+          '<div class="digest-table-head"><span>Name</span><span>Stage</span><span>Owner</span><span>Age</span><span></span></div>' +
           tableAHtml +
         '</div>' +
       '</div>' +
@@ -1101,11 +1182,11 @@ function renderEmail(e) {
           '<div class="info-cell"><span class="cell-label">Store</span><span class="cell-value">' + e.lead.store + '</span></div>' +
           '<div class="info-cell"><span class="cell-label">Source</span><span class="cell-value">' + srcLabel + '</span></div>' +
           '<div class="info-cell"><span class="cell-label">Product</span><span class="cell-value">' + capProduct(e.product) + '</span></div>' +
-          '<div class="info-cell cell-contact"><span class="cell-label">Contact</span><a class="cell-lock-link" href="#"><i class="ph ph-lock-simple"></i><span class="lock-text">Phone and email available in the CRM</span></a></div>' +
+          '<div class="info-cell cell-contact"><span class="cell-label">Contact</span><a class="cell-lock-link" href="#"><i class="ph ph-lock-simple"></i><span class="lock-text">Available in CRM</span></a></div>' +
         '</div>' +
         '<div class="handover-note">&ldquo;' + e.handoverNote + '&rdquo;</div>' +
-        '<a class="cta-btn" href="#"><i class="ph ph-arrow-right"></i>View lead</a>' +
         '<p class="urgency">' + URGENCY.c + '</p>' +
+        '<a class="cta-btn" href="#">View lead<i class="ph ph-arrow-right"></i></a>' +
       '</div>' +
       FOOTER_HTML;
   }
@@ -1113,6 +1194,13 @@ function renderEmail(e) {
   var metaLine = e.lead.location + ' · ' + srcLabel;
 
   var activityHTML = '';
+  if (e.variant === 'a' || e.variant === 'c') {
+    activityHTML =
+      '<div class="activity-empty">' +
+        '<span class="activity-empty-title">No browsing activity captured</span>' +
+        '<span class="activity-empty-sub">This lead submitted a form without interacting with Roomvo tools.</span>' +
+      '</div>';
+  }
   if (e.variant === 'b') {
     activityHTML =
       '<div class="activity-section">' +
@@ -1123,12 +1211,22 @@ function renderEmail(e) {
           '<div class="activity-row"><span class="activity-icon"><i class="ph ph-timer"></i></span><span>8 min avg session · above average</span></div>' +
           '<div class="activity-row"><span class="activity-icon"><i class="ph ph-tag"></i></span><span>Brands surveyed: <strong>' + (e.activityBrands || srcLabel) + '</strong></span></div>' +
         '</div>' +
+      '</div>' +
+      '<div class="activity-section">' +
+        '<div class="activity-header">Uploaded rooms (5)</div>' +
+        '<div class="uploaded-rooms">' +
+          '<div class="uploaded-rooms-carousel">' +
+            '<div class="room-photo-cell"><span class="room-type-badge">Kitchen</span><img class="room-thumb" src="https://www.figma.com/api/mcp/asset/2a571429-5804-45bf-8878-89129d802fbc" alt=""></div>' +
+            '<div class="room-photo-cell"><span class="room-type-badge">Kitchen</span><img class="room-thumb" src="https://www.figma.com/api/mcp/asset/d018e9a6-0229-4dca-ae7a-ee2c77f80002" alt=""></div>' +
+            '<div class="room-photo-cell"><span class="room-type-badge">Bathroom</span><img class="room-thumb" src="https://www.figma.com/api/mcp/asset/3209a67c-db83-4dcb-88a4-5ddb35189fad" alt=""></div>' +
+            '<div class="room-photo-cell"><span class="room-type-badge">Kids room</span><img class="room-thumb" src="https://www.figma.com/api/mcp/asset/933c987b-103e-41de-8a13-93106697017e" alt=""></div>' +
+            '<div class="room-photo-cell"><span class="room-type-badge">Other</span><img class="room-thumb" src="https://www.figma.com/api/mcp/asset/581c9bd2-22e7-433f-8440-7a51339b465b" alt=""></div>' +
+          '</div>' +
+        '</div>' +
       '</div>';
   }
 
-  var lockCopy = e.variant === 'c'
-    ? 'Phone and email available in the CRM'
-    : 'Phone and email available after claiming';
+  var lockCopy = 'Contact information available in Roomvo PRO';
 
   return (
     emailHeader(e.variant) +
@@ -1137,8 +1235,9 @@ function renderEmail(e) {
 
       '<div class="lead-row">' +
         '<div class="lead-avatar" style="background:' + e.avatarBg + ';color:' + avatarFg(e.avatarBg) + '">' + e.lead.initials + '</div>' +
-        '<div>' +
+        '<div style="display:flex;align-items:center;gap:var(--space-2);flex-wrap:wrap;">' +
           '<div class="lead-name">' + e.lead.name + '</div>' +
+          (e.variant === 'b' ? '<span class="badge badge-high-intent">High intent</span>' : '') +
         '</div>' +
       '</div>' +
 
@@ -1151,8 +1250,8 @@ function renderEmail(e) {
       '</div>' +
       activityHTML +
 
-      '<a class="cta-btn" href="#"><i class="ph ' + CTA_ICON[e.variant] + '"></i>' + CTA_LABEL[e.variant] + '</a>' +
       '<p class="urgency">' + URGENCY[e.variant] + '</p>' +
+      '<a class="cta-btn" href="#">' + CTA_LABEL[e.variant] + '<i class="ph ' + CTA_ICON[e.variant] + '"></i></a>' +
 
     '</div>' +
 
